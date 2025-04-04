@@ -1,0 +1,108 @@
+syntax = "proto3";
+
+import "google/protobuf/timestamp.proto";
+
+package api_key.v1;
+
+// Specific configuration for go
+option go_package = "github.com/PandoraSuite/pandora-proto/api_key;pb";
+
+// Specific configuration for Java
+option java_package = "com.pandorasuite.api_key";
+option java_outer_classname = "ApiKeyProto";
+
+// Specific configuration for C#
+option csharp_namespace = "PandoraSuite.ApiKey";
+
+// Specific configuration for PHP
+option php_namespace = "PandoraSuite\\ApiKey";
+
+// Specific configuration for Ruby
+option ruby_package = "PandoraSuite::ApiKey";
+
+// Specific configuration for Objective-C
+option objc_class_prefix = "PAK";
+
+service APIKeyService {
+  rpc Validate(ValidateRequest) returns (ValidateResponse);
+  rpc ValidateAndConsume(ValidateAndConsumeRequest) returns (ValidateAndConsumeResponse);
+  rpc ValidateAndReservation(ValidateAndReservationRequest) returns (ValidateAndReservationResponse);
+}
+
+message BaseValidateParams {
+  string key = 1;
+	string service = 2;
+	string environment = 3;
+	string service_version = 4;
+	google.protobuf.Timestamp request_time = 5;
+}
+
+message ValidateRequest {
+  BaseValidateParams params = 1;
+}
+
+message ValidateAndConsumeRequest {
+  BaseValidateParams params = 1;
+}
+
+message ValidateAndReservationRequest {
+  string key = 1;
+  string reservation_id = 2;
+}
+
+message ValidateResponse {
+  message Successful {
+    string request_id = 1;
+  }
+
+  message Failed {
+    string code = 1;
+    string message = 2;
+  }
+
+  bool valid = 1;
+
+  oneof result {
+    Successful successful = 2;
+    Failed failed = 3;
+  }
+}
+
+message ValidateAndConsumeResponse {
+  message Successful {
+    string request_id = 1;
+    int64 available_request = 2;
+  }
+
+  message Failed {
+    string code = 1;
+    string message = 2;
+  }
+
+  bool valid = 1;
+
+  oneof result {
+    Successful successful = 2;
+    Failed failed = 3;
+  }
+}
+
+message ValidateAndReservationResponse {
+  message Successful {
+    string request_id = 1;
+    int64 available_request = 2;
+    string reservation_id = 3;
+  }
+
+  message Failed {
+    string code = 1;
+    string message = 2;
+  }
+
+  bool valid = 1;
+
+  oneof result {
+    Successful successful = 2;
+    Failed failed = 3;
+  }
+}

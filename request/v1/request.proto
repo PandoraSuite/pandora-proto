@@ -1,0 +1,43 @@
+syntax = "proto3";
+
+import "validate/validate.proto";
+import "google/protobuf/empty.proto";
+
+package request.v1;
+
+// Specific configuration for go
+option go_package = "github.com/PandoraSuite/pandora-proto/api_key;pb";
+
+// Specific configuration for Java
+option java_package = "com.pandorasuite.api_key";
+option java_outer_classname = "ApiKeyProto";
+
+// Specific configuration for C#
+option csharp_namespace = "PandoraSuite.ApiKey";
+
+// Specific configuration for PHP
+option php_namespace = "PandoraSuite\\ApiKey";
+
+// Specific configuration for Ruby
+option ruby_package = "PandoraSuite::ApiKey";
+
+// Specific configuration for Objective-C
+option objc_class_prefix = "PAK";
+
+service RequestService {
+  rpc SetRequestStatus(SetRequestStatusRequest) returns (google.protobuf.Empty);
+}
+
+message SetRequestStatusRequest {
+  string id = 1;
+  RequestExecutionStatus status = 2 [(validate.rules).enum = {not_in: [4], defined_only: true}];
+}
+
+enum RequestExecutionStatus {
+  REQUEST_EXECUTION_STATUS_UNSPECIFIED = 0;
+  REQUEST_EXECUTION_STATUS_SUCCESS = 1;
+  REQUEST_EXECUTION_STATUS_FAILED = 2;
+  REQUEST_EXECUTION_STATUS_PENDING = 3;
+  REQUEST_EXECUTION_STATUS_UNAUTHORIZED = 4;
+  REQUEST_EXECUTION_STATUS_SERVER_ERROR = 5;
+}
