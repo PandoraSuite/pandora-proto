@@ -14,6 +14,7 @@ service RequestService {
 message SetRequestStatusRequest {
   string id = 1;
   RequestExecutionStatus status = 2 [(buf.validate.field).enum = {
+    defined_only: true,
     not_in: [
       0,
       4
