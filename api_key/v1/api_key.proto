@@ -4,6 +4,8 @@ import "google/protobuf/timestamp.proto";
 
 package api_key.v1;
 
+option go_package = "api_key/v1";
+
 service APIKeyService {
   rpc Validate(ValidateRequest) returns (ValidateResponse);
   rpc ValidateAndConsume(ValidateAndConsumeRequest) returns (ValidateAndConsumeResponse);

@@ -4,6 +4,8 @@ import "google/protobuf/empty.proto";
 
 package reservation.v1;
 
+option go_package = "reservation/v1";
+
 service ReservationService {
   rpc Commit(CommitRequest) returns (google.protobuf.Empty);
   rpc Rollback(RollbackRequest) returns (google.protobuf.Empty);
