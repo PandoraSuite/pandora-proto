@@ -1,9 +1,9 @@
 syntax = "proto3";
 
+package request.v1;
+
 import "buf/validate/validate.proto";
 import "google/protobuf/empty.proto";
-
-package request.v1;
 
 option go_package = "request/pb";
 
@@ -13,7 +13,12 @@ service RequestService {
 
 message SetRequestStatusRequest {
   string id = 1;
-  RequestExecutionStatus status = 2 [(buf.validate.field).enum = { not_in: [0, 4]}];
+  RequestExecutionStatus status = 2 [(buf.validate.field).enum = {
+    not_in: [
+      0,
+      4
+    ]
+  }];
 }
 
 enum RequestExecutionStatus {

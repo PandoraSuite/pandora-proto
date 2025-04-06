@@ -1,8 +1,8 @@
 syntax = "proto3";
 
-import "google/protobuf/timestamp.proto";
-
 package api_key.v1;
+
+import "google/protobuf/timestamp.proto";
 
 option go_package = "api_key/pb";
 
@@ -14,10 +14,10 @@ service APIKeyService {
 
 message BaseValidateParams {
   string key = 1;
-	string service = 2;
-	string environment = 3;
-	string service_version = 4;
-	google.protobuf.Timestamp request_time = 5;
+  string service = 2;
+  string environment = 3;
+  string service_version = 4;
+  google.protobuf.Timestamp request_time = 5;
 }
 
 message ValidateRequest {
