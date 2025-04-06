@@ -5,7 +5,7 @@ import "google/protobuf/empty.proto";
 
 package request.v1;
 
-option go_package = "request/v1";
+option go_package = "request/pb";
 
 service RequestService {
   rpc SetRequestStatus(SetRequestStatusRequest) returns (google.protobuf.Empty);
