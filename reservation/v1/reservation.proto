@@ -4,25 +4,6 @@ import "google/protobuf/empty.proto";
 
 package reservation.v1;
 
-// Specific configuration for go
-option go_package = "github.com/PandoraSuite/pandora-proto/reservation;pb";
-
-// Specific configuration for Java
-option java_package = "com.pandorasuite.reservation";
-option java_outer_classname = "ReservationProto";
-
-// Specific configuration for C#
-option csharp_namespace = "PandoraSuite.Reservation";
-
-// Specific configuration for PHP
-option php_namespace = "PandoraSuite\\Reservation";
-
-// Specific configuration for Ruby
-option ruby_package = "PandoraSuite::Reservation";
-
-// Specific configuration for Objective-C
-option objc_class_prefix = "PAK";
-
 service ReservationService {
   rpc Commit(CommitRequest) returns (google.protobuf.Empty);
   rpc Rollback(RollbackRequest) returns (google.protobuf.Empty);

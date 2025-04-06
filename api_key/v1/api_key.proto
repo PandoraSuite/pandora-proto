@@ -4,25 +4,6 @@ import "google/protobuf/timestamp.proto";
 
 package api_key.v1;
 
-// Specific configuration for go
-option go_package = "github.com/PandoraSuite/pandora-proto/api_key;pb";
-
-// Specific configuration for Java
-option java_package = "com.pandorasuite.api_key";
-option java_outer_classname = "ApiKeyProto";
-
-// Specific configuration for C#
-option csharp_namespace = "PandoraSuite.ApiKey";
-
-// Specific configuration for PHP
-option php_namespace = "PandoraSuite\\ApiKey";
-
-// Specific configuration for Ruby
-option ruby_package = "PandoraSuite::ApiKey";
-
-// Specific configuration for Objective-C
-option objc_class_prefix = "PAK";
-
 service APIKeyService {
   rpc Validate(ValidateRequest) returns (ValidateResponse);
   rpc ValidateAndConsume(ValidateAndConsumeRequest) returns (ValidateAndConsumeResponse);

@@ -1,28 +1,9 @@
 syntax = "proto3";
 
-import "validate/validate.proto";
+import "buf/validate/validate.proto";
 import "google/protobuf/empty.proto";
 
 package request.v1;
-
-// Specific configuration for go
-option go_package = "github.com/PandoraSuite/pandora-proto/request;pb";
-
-// Specific configuration for Java
-option java_package = "com.pandorasuite.request";
-option java_outer_classname = "RequestProto";
-
-// Specific configuration for C#
-option csharp_namespace = "PandoraSuite.Request";
-
-// Specific configuration for PHP
-option php_namespace = "PandoraSuite\\Request";
-
-// Specific configuration for Ruby
-option ruby_package = "PandoraSuite::Request";
-
-// Specific configuration for Objective-C
-option objc_class_prefix = "PAK";
 
 service RequestService {
   rpc SetRequestStatus(SetRequestStatusRequest) returns (google.protobuf.Empty);
@@ -30,7 +11,7 @@ service RequestService {
 
 message SetRequestStatusRequest {
   string id = 1;
-  RequestExecutionStatus status = 2 [(validate.rules).enum = {not_in: [4], defined_only: true}];
+  RequestExecutionStatus status = 2 [(buf.validate.field).enum = { not_in: [0, 4]}];
 }
 
 enum RequestExecutionStatus {
