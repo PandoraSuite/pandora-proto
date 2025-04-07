@@ -8,7 +8,7 @@ option go_package = "api_key/pb";
 
 service APIKeyService {
   rpc ValidateAndConsume(ValidateAndConsumeRequest) returns (ValidateAndConsumeResponse);
-  rpc ValidateAndReservation(ValidateAndReservationRequest) returns (ValidateAndReservationResponse);
+  rpc ValidateAndReserve(ValidateAndReserveRequest) returns (ValidateAndReserveResponse);
   rpc ValidateWithReservation(ValidateWithReservationRequest) returns (ValidateWithReservationResponse);
 }
 
@@ -24,13 +24,14 @@ message ValidateAndConsumeRequest {
   BaseValidateParams params = 1;
 }
 
-message ValidateAndReservationRequest {
+message ValidateAndReserveRequest {
   BaseValidateParams params = 1;
 }
 
 message ValidateWithReservationRequest {
-  string request_id = 1;
+  string key = 1;
   string reservation_id = 2;
+  google.protobuf.Timestamp request_time = 3;
 }
 
 message ValidateAndConsumeResponse {
@@ -52,7 +53,7 @@ message ValidateAndConsumeResponse {
   }
 }
 
-message ValidateAndReservationResponse {
+message ValidateAndReserveResponse {
   message Successful {
     string request_id = 1;
     int64 available_request = 2;
