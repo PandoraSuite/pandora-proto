@@ -29,9 +29,8 @@ message ValidateAndReserveRequest {
 }
 
 message ValidateWithReservationRequest {
-  string key = 1;
+  BaseValidateParams params = 1;
   string reservation_id = 2;
-  google.protobuf.Timestamp request_time = 3;
 }
 
 message ValidateAndConsumeResponse {
