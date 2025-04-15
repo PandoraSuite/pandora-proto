@@ -7,9 +7,9 @@ import "google/protobuf/timestamp.proto";
 option go_package = "api_key/pb";
 
 service APIKeyService {
-  rpc Validate(ValidateRequest) returns (ValidateResponse);
   rpc ValidateAndConsume(ValidateAndConsumeRequest) returns (ValidateAndConsumeResponse);
-  rpc ValidateAndReservation(ValidateAndReservationRequest) returns (ValidateAndReservationResponse);
+  rpc ValidateAndReserve(ValidateAndReserveRequest) returns (ValidateAndReserveResponse);
+  rpc ValidateWithReservation(ValidateWithReservationRequest) returns (ValidateWithReservationResponse);
 }
 
 message BaseValidateParams {
@@ -20,35 +20,17 @@ message BaseValidateParams {
   google.protobuf.Timestamp request_time = 5;
 }
 
-message ValidateRequest {
-  BaseValidateParams params = 1;
-}
-
 message ValidateAndConsumeRequest {
   BaseValidateParams params = 1;
 }
 
-message ValidateAndReservationRequest {
-  string key = 1;
-  string reservation_id = 2;
+message ValidateAndReserveRequest {
+  BaseValidateParams params = 1;
 }
 
-message ValidateResponse {
-  message Successful {
-    string request_id = 1;
-  }
-
-  message Failed {
-    string code = 1;
-    string message = 2;
-  }
-
-  bool valid = 1;
-
-  oneof result {
-    Successful successful = 2;
-    Failed failed = 3;
-  }
+message ValidateWithReservationRequest {
+  BaseValidateParams params = 1;
+  string reservation_id = 2;
 }
 
 message ValidateAndConsumeResponse {
@@ -70,11 +52,29 @@ message ValidateAndConsumeResponse {
   }
 }
 
-message ValidateAndReservationResponse {
+message ValidateAndReserveResponse {
   message Successful {
     string request_id = 1;
     int64 available_request = 2;
     string reservation_id = 3;
+  }
+
+  message Failed {
+    string code = 1;
+    string message = 2;
+  }
+
+  bool valid = 1;
+
+  oneof result {
+    Successful successful = 2;
+    Failed failed = 3;
+  }
+}
+
+message ValidateWithReservationResponse {
+  message Successful {
+    string request_id = 1;
   }
 
   message Failed {
