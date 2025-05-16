@@ -26,6 +26,7 @@ message ValidateAndConsumeRequest {
 
 message ValidateAndReserveRequest {
   BaseValidateParams params = 1;
+  sitrng client_id = 2;
 }
 
 message ValidateWithReservationRequest {
