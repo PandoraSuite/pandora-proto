@@ -26,7 +26,6 @@ message ValidateAndConsumeRequest {
 
 message ValidateAndReserveRequest {
   BaseValidateParams params = 1;
-  sitrng client_id = 2;
 }
 
 message ValidateWithReservationRequest {
@@ -38,6 +37,7 @@ message ValidateAndConsumeResponse {
   message Successful {
     string request_id = 1;
     int64 available_request = 2;
+    int64 client_id = 3;
   }
 
   message Failed {
@@ -58,6 +58,7 @@ message ValidateAndReserveResponse {
     string request_id = 1;
     int64 available_request = 2;
     string reservation_id = 3;
+    int64 client_id = 4;
   }
 
   message Failed {
