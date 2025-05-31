@@ -56,11 +56,19 @@ message ValidateRequest {
   string service_version = 4;
 }
 
-message ConsumerInfo {
-  int64 project_id = 1;
-  string project_name = 2;
-  int64 client_id = 3;
-  string client_name = 4;
+message Project {
+  int64 id = 1;
+  string name = 2;
+}
+
+message Client {
+  int64 id = 1;
+  string name = 2;
+}
+
+message Environment {
+  int64 id = 1;
+  string name = 2;
 }
 
 message ValidateResponse {
@@ -79,7 +87,9 @@ message ValidateResponse {
       "ENVIRONMENT_DISABLED"
     ]
   } ];
-  ConsumerInfo consumer_info = 4;
+  Project project = 4;
+  Client client = 5;
+  Environment environment = 6;
 }
 
 message ValidateConsumeResponse {
