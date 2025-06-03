@@ -13,6 +13,8 @@ lint:
   ignore_only:
     RPC_REQUEST_STANDARD_NAME:
       - api_key/v1/api_key.proto
+    RPC_REQUEST_RESPONSE_UNIQUE:
+      - api_key/v1/api_key.proto
 
 breaking:
   use:
