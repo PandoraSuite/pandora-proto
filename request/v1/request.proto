@@ -8,25 +8,18 @@ import "google/protobuf/empty.proto";
 option go_package = "request/pb";
 
 service RequestService {
-  rpc SetRequestStatus(SetRequestStatusRequest) returns (google.protobuf.Empty);
+  rpc UpdateExecutionStatus(UpdateExecutionStatusRequest) returns (google.protobuf.Empty);
 }
 
-message SetRequestStatusRequest {
+message UpdateExecutionStatusRequest {
   string id = 1;
-  RequestExecutionStatus status = 2 [(buf.validate.field).enum = {
-    defined_only: true,
-    not_in: [
-      0,
-      4
+  string detail = 2;
+  int64 status_code = 3;
+  string execution_status = 4 [ (buf.validate.field).string = {
+    in : [
+      "success",
+      "client_error",
+      "server_error"
     ]
-  }];
-}
-
-enum RequestExecutionStatus {
-  REQUEST_EXECUTION_STATUS_NULL = 0;
-  REQUEST_EXECUTION_STATUS_SUCCESS = 1;
-  REQUEST_EXECUTION_STATUS_FAILED = 2;
-  REQUEST_EXECUTION_STATUS_PENDING = 3;
-  REQUEST_EXECUTION_STATUS_UNAUTHORIZED = 4;
-  REQUEST_EXECUTION_STATUS_SERVER_ERROR = 5;
+  } ];
 }
