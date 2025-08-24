@@ -17,6 +17,8 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
 
       - name: Set up Buf CLI
         uses: bufbuild/buf-setup-action@v1
@@ -27,4 +29,4 @@ jobs:
         run: buf lint
 
       - name: Check for breaking changes
-        run: buf breaking --against '.git#branch=main'
+        run: buf breaking --against '.git#branch=origin/main'
