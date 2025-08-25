@@ -14,10 +14,12 @@ service APIKeyService {
 
 message RequestMetadata {
   string body = 1;
-  string headers = 2;
-  string query_params = 3;
-  string body_content_type = 4 [ (buf.validate.field).string = {
+  string cookies = 2;
+  string headers = 3;
+  string query_params = 4;
+  string body_content_type = 5 [ (buf.validate.field).string = {
     in : [
+      "",
       "application/xml",
       "application/json",
       "text/plain",
